@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 
-public class myDSClient {
+public class clientsim {
     public static void main(String[] args) {
         try {
             Socket s = new Socket("127.0.0.1", 50000);
