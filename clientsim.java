@@ -1,6 +1,5 @@
 import java.io.*;
 import java.net.*;
-import java.nio.charset.StandardCharsets;
 
 public class clientsim {
     public static void main(String[] args) {
@@ -58,7 +57,7 @@ public class clientsim {
             while (byteArray.length == 0) {
             byteArray = new byte[input.available()];
             input.read(byteArray);
-            message = new String(byteArray, StandardCharsets.UTF_8);
+            message = new String(byteArray);
             }
         } catch (IOException e) {
             System.out.println("IO:"+e.getMessage());
