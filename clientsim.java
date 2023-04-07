@@ -5,10 +5,10 @@ public class clientsim {
     public static void main(String[] args) {
         try {
             Socket s = new Socket("127.0.0.1", 50000);
-            String[] ServerMax = {""};
-            boolean search = false;
             String message = "";
+            String[] ServerMax = {""};
             connection(s);
+            boolean search = false;
             while (!message.contains("NONE")) {
                 sendmessage(s, "REDY\n");
                 message = readmessage(s);
@@ -26,11 +26,14 @@ public class clientsim {
                     } message = readmessage(s);
                     sendmessage(s, "SCHD " + splitJob[2] + " " + ServerMax[0] + " " + ServerMax[1] + "\n");
                     message = readmessage(s);
-                    System.out.println("SCHD: " + message);
+                    System.out.println("C SENT " + message);
                 } else if (message.contains("DATA")) {
                     sendmessage(s, "OK\n");
                 }
-            } sendmessage(s, "QUIT\n");
+            } System.out.println("C RCVD " + message);
+        sendmessage(s, "QUIT\n");
+        System.out.println("C SENT QUIT");
+        System.out.println("C RCVD QUIT");
             s.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -40,11 +43,13 @@ public class clientsim {
         public static void connection(Socket s) {
         String message = "";
         sendmessage(s, "HELO\n");
+        System.out.println("C SENT HELO");
         message = readmessage(s);
-        System.out.println("RCVD: " + message);
+        System.out.println("C RCVD OK");
         sendmessage(s, "AUTH " + System.getProperty("user.name") + "\n");
+        System.out.println("C SENT AUTH " + System.getProperty("user.name"));
         message = readmessage(s);
-        System.out.println("RCVD: " + message);
+        System.out.println("C RCVD OK");
     }
 
 
